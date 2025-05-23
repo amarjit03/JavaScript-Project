@@ -30,10 +30,4 @@ export const verifyJwt = asyncHandler(async(req,_,next) => {
             "Invalid Acess Token"
         )
     }
-
-
-
-
-
-
 })
