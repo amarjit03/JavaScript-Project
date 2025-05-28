@@ -292,6 +292,11 @@ const updateUserAvatar = asyncHandler(async(req,res) => {
   if (!avatar.url){
     throw new ApiError(400,"Error while  uploading avatar")
   }
+
+  // TODO : delete old-image
+
+  
+
   await User.findByIdAndUpdate(
     req.user?._id,
     {
@@ -323,6 +328,74 @@ const updateUserCoverImage = asyncHandler(async(req,res) => {
     },
     {new:true}
   ).select("-password")
+})
+
+
+const getUserChannelProfile = asyncHandler(async(req,res) => {
+  const {username} = req.params
+
+  if (!username?.trim()) {
+    throw new ApiError(400,"unable to get username")
+  }
+
+  const channel = await User.aggregate([
+    {
+      $match: {
+      username: username?.toLowerCase()
+     }
+    },
+    {
+      $lookup: {
+      from: "subscriptions",
+      localField: "_id",
+      foreignField: "channel",
+      as: "subscribers"
+      }
+    },
+    {
+      $lookup: {
+      from: "subscriptions",
+      localField: "_id",
+      foreignField: "subscriber",
+      as: "subscribedTo"
+      }
+    },
+    {
+      $addFields:{
+        subscriberCount: {
+          $size: "$subscribers"
+        },
+        channelSubscribedToCount:{
+          $size: "$subscribedTo"
+
+        },
+        $cond:{
+          if: {$in: [req.user?._id,"$subscribers"]},
+          then: true,
+          else: false
+        }
+      }
+    },
+    {
+      $project: {
+        fullname: 1,
+        username: 1,
+        subscriberCount: 1,
+        channelSubscribedToCount:1,
+        isSubscribed:1,
+        avatar:1,
+        coverImage:1,
+        email:1
+      }
+    }
+  ])
+  if (!channel?.length){
+    throw new ApiError(400,"unable to get channel data")
+  }
+  return res
+  .status(200)
+  .json(new ApiResponse(200,channel[0], "User channel fetched sucessfully"))
+
 })
 
 export { registerUser,
