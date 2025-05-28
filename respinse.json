@@ -1,0 +1,20 @@
+{
+	"statusCode": true,
+	"data": {
+		"user": {
+			"_id": "68301e8f02014e58552a55ac",
+			"username": "user1",
+			"email": "user@gmail.com",
+			"fullname": "user",
+			"avatar": "http://res.cloudinary.com/dcbx7q6mk/image/upload/v1747984014/voe7jye0d8jwunzk0y39.avif",
+			"coverImage": "http://res.cloudinary.com/dcbx7q6mk/image/upload/v1747984015/xfb6xdugrervpfdwq1nu.jpg",
+			"watchHistory": [],
+			"createdAt": "2025-05-23T07:06:55.793Z",
+			"updatedAt": "2025-05-28T06:21:56.849Z",
+			"__v": 0
+		},
+		"accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODMwMWU4ZjAyMDE0ZTU4NTUyYTU1YWMiLCJlbWFpbCI6InVzZXJAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ1c2VyMSIsImZ1bGxuYW1lIjoidXNlciIsImlhdCI6MTc0ODQxMzMxNiwiZXhwIjoxNzQ4NDk5NzE2fQ.g36GIIQt-XpIiblCTFUVPcgNxcoiLLtbo7-6bQhVSW0",
+		"refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODMwMWU4ZjAyMDE0ZTU4NTUyYTU1YWMiLCJpYXQiOjE3NDg0MTMzMTYsImV4cCI6MTc0OTI3NzMxNn0.FBO7GIfsWqirIVNlqSSkBUsp40HFaOe7KYpIfXQy0ak"
+	},
+	"message": "user Logged In Sucessfully"
+}
